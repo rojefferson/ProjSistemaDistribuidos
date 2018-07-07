@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Styled Maps - Night Mode</title>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -15,13 +16,49 @@
       margin: 0;
       padding: 0;
     }
+
+    @keyframes animacaoBolada {
+      0% {
+        background: rgb(255, 123, 0);
+        width: 150px;
+      }
+      50% {
+        background: rgb(255, 51, 0);
+      }
+      100% {
+        background: red;
+        width: 200px;
+      }
+    }
+
+    #popup {
+      top: 4%;
+      right: 1%;
+      position: fixed;
+      height: 125px;
+      width: 150px;
+      background-color: rgb(255, 123, 0);
+      text-align: center;
+      animation-name: animacaoBolada;
+      animation-duration: 3s;
+      animation-timing-function: ease;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-play-state: running;
+      border-radius: 20px;
+    }
   </style>
 </head>
+
 <body>
   <div id="map"></div>
+  <div id="popup">
+    <h1>Onibus proximo</h1>
+  </div>
   <script src="map.js"> </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxJv1r-fmzvAg1MtmJAFpN1KQvjvthoKk&callback=initMap" async
     defer></script>
   <script src="ws-client.js"></script>
 </body>
+
 </html>
