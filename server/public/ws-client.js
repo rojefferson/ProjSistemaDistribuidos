@@ -10,15 +10,10 @@ connection.onclose = function() {
 
 connection.onmessage = function(e) {
   var tick = JSON.parse(e.data)
-
-  if (!tick.tick)
-    return
-
+  if (!tick.tick) return
   moveBus(tick.latitude, tick.longitude)
 }
 
-console.log(connection)
-
-function sendMsg () {
-  connection.send('dale')
-}
+//function sendMsg () {
+  //connection.send('dale')
+//}
