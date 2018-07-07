@@ -19,6 +19,8 @@ connection.onmessage = function(e) {
 }
 
 setInterval(function () {
+  if (!positions.length)
+    return
   var obj = positions.shift()
   moveBus(obj.lat, obj.lon)
 }, 500)

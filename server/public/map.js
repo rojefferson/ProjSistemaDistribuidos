@@ -89,9 +89,10 @@ function initMap() {
 
   var locations = [
     ['pessoa', -8.055344, -34.951004],
-    ['bus', -8.051450, -34.951055],
     ['bus', -8.0521435, -34.9571111],
   ];
+
+  window.markers = []
 
   for (i = 0; i < locations.length; i++) {
     if (locations[i][0] == "pessoa") {
@@ -108,7 +109,9 @@ function initMap() {
         title: locations[i][0],
         map: mapp,
         icon: 'img/bus.ico'
-      });
+      })
+
+      //markers.push(marker)
     }
 
   }
