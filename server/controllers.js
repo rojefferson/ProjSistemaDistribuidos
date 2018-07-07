@@ -2,7 +2,7 @@ const WebSocket       = require('ws')
 const http            = require('http')
 const WebSocketServer = WebSocket.Server
 
-wss = new WebSocketServer({port: 8080, path: '/testing'})
+wss = new WebSocketServer({port: 8080, path: '/bustick'})
 wss.on('connection', function(ws) {
 
   ws.on('message', function(message) {
@@ -14,7 +14,7 @@ wss.on('connection', function(ws) {
 
   setInterval(function() {
     broadCast(wss, ws, {
-      tick: true,
+      type: 'tick',
       latitude: randomInt(0, 100),
       longitude: randomInt(0, 100),
       bus: 'Caxanga'

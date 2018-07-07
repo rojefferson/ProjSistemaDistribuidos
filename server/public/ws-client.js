@@ -1,4 +1,4 @@
-var connection = new WebSocket('ws://localhost:8080/testing')
+var connection = new WebSocket('ws://localhost:8080/bustick')
 
 connection.onopen = function() {
   console.log('Connection open!')
@@ -9,9 +9,9 @@ connection.onclose = function() {
 }
 
 connection.onmessage = function(e) {
-  var tick = JSON.parse(e.data)
-  if (!tick.tick) return
-  moveBus(tick.latitude, tick.longitude)
+  var msg = JSON.parse(e.data)
+  if (msg.type === 'tick')
+    moveBus(tick.latitude, tick.longitude)
 }
 
 //function sendMsg () {
