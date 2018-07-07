@@ -85,24 +85,24 @@ function initMap() {
       stylers: [{ color: '#17263c' }]
     }
     ]
-  });
+  })
 
   var locations = [
     ['First Shoppe', -8.052071, -34.949999],
     ['Second Shoppe', -8.052071, -34.950001],
-    ['Third Shoppe', -8.0521435, -34.9571111],
-  ];
+    ['Third Shoppe', -8.0521435, -34.9571111]
+  ]
 
   for (i = 0; i < locations.length; i++) {
     window.marker = new google.maps.Marker({
-      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-      title: locations[i][0],
-      map: mapp,
-      icon: 'img/bus.ico'
-    });
+      position : new google.maps.LatLng(locations[i][1], locations[i][2]),
+      title    : locations[i][0],
+      map      : mapp,
+      icon     : 'img/bus.ico'
+    })
   }
 }
 
 function moveBus (lat, lng) {
-  marker.setPosition( new google.maps.LatLng( lat,lng ) );
+  marker.setPosition(new google.maps.LatLng(lat,lng));
 }
