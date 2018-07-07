@@ -3,8 +3,8 @@ window.markers = []
 function initMap() {
   // Styles a map in night mode.
   window. mapp = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: -8.0538562, lng: -34.93937 },
-    zoom: 15,
+    center: { lat: -8.0522726, lng: -34.9517669 },
+    zoom: 16,
     styles: [
     { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
     { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
@@ -88,18 +88,29 @@ function initMap() {
   });
 
   var locations = [
-    ['First Shoppe', -8.052071, -34.949999],
-    ['Second Shoppe', -8.052071, -34.950001],
-    ['Third Shoppe', -8.0521435, -34.9571111],
+    ['pessoa', -8.055344, -34.951004],
+    ['bus', -8.051450, -34.951055],
+    ['bus', -8.0521435, -34.9571111],
   ];
 
   for (i = 0; i < locations.length; i++) {
-    window.marker = new google.maps.Marker({
-      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-      title: locations[i][0],
-      map: mapp,
-      icon: 'img/bus.ico'
+    if (locations[i][0]=="pessoa"){
+      window.marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        title: locations[i][0],
+        map: mapp,
+        icon: 'img/pessoa.ico'
     });
+  }
+    if (locations[i][0]=="bus"){
+      window.marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        title: locations[i][0],
+        map: mapp,
+        icon: 'img/bus.ico'
+    });  
+  }
+
   }
 }
 
