@@ -97,7 +97,8 @@ function initMap() {
     window.marker = new google.maps.Marker({
       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
       title: locations[i][0],
-      map: mapp
+      map: mapp,
+      icon: 'img/bus.ico'
     });
   }
 }
