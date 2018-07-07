@@ -2,7 +2,10 @@ const WebSocket       = require('ws')
 const http            = require('http')
 const amqp            = require('amqplib/callback_api');
 const WebSocketServer = WebSocket.Server
+const utmObj          = require('utm-latlng')
 
+
+var utm = new utmObj()
 wss = new WebSocketServer({port: 8080, path: '/bustick'})
 wss.on('connection', function(ws) {
 
@@ -13,14 +16,39 @@ wss.on('connection', function(ws) {
 
   broadCast(wss, ws, 'Someone joined the server!')
 
-  setInterval(function() {
-    broadCast(wss, ws, {
-      type: 'tick',
-      latitude: randomFloat(-8.0584999, -8.0484900),
-      longitude: randomFloat(-34.9500799, -34.8500700),
-      bus: 'Caxanga'
-    })
-  }, 1000);
+  //amqp.connect('amqp://guest:guest@45.55.84.196', function(err, conn) {
+  //
+  amqp.connect('amqp://localhost', function(err, conn) {
+
+      console.log('connected')
+
+    if (err)
+      return console.trace(err)
+
+    conn.createChannel(function(err, ch) {
+      var q = 'hello';
+
+      ch.assertQueue(q, {durable: false});
+
+
+        ch.consume(q, function(msg) {
+
+          var data = msg.content.toString().split(',')
+
+          var cord = utm.convertUtmToLatLng(data[6], data[7], 25, 'L')
+
+          broadCast(wss, ws, {
+            type: 'tick',
+            latitude: cord.lat,
+            longitude: cord.lng
+            //bus: 'Caxanga'
+          })
+        }, {noAck: true});
+
+
+    });
+  });
+
 })
 
 function randomFloat (low, high) {
